@@ -3,13 +3,22 @@
 Workshops for Day 3 of the 2026 Winter School for AI in Predictive Agriculture @ UQ, Queensland AU.
 Using DNA foundation models to inform SNP selection for genomic prediction tasks.
 
+Created by Thomas Crow, Claire Huang and Dr David Kainer from the ARC CoE for Plant Success in Nature and Agriculture and the University of Queensland.
+
+Colab space:
+https://colab.research.google.com/drive/1MKvTlcX7_sD6104pLE93lyVn14Pk0RS_?usp=sharing
+
 ## Workshop Files
 
+- `WinterSchool_2026_colab_notebook.ipynb`: The main workshop activity notebook. Designed to be run in Google Colab (in Jupyter/iPython format) to perform DNA foundation model tasks and downstream analysis.
+- `Sbicolor_454_v3.0.1_Chr09.fa.gz`: Compressed reference genome FASTA file for *Sorghum bicolor* Chromosome 9, used during Variant Effect Predictor (VEP) validation.
+- `data/Sorghum_bicolor.Sorghum_bicolor_NCBIv3.dna.chromosome.1.fa.gz`: Compressed reference genome FASTA file for *Sorghum bicolor* Chromosome 1, used as reference sequence data for Chromosome 1 SNPs.
 - `data/panicle_length_genomatrix_snps.vcf`: A sorghum genotype matrix of 1000 SNPs across 527 accessions. SNPs match Chr9_random1000 SNPs.
 - `data/pheno_PL_filtered.tsv`: Phenotype data for panicle length in sorghum across 527 accessions.
 - `data/DS24-Chr9_random1000_maf05.tsv`: 1000 randomly selected SNPs from *Sorghum bicolor* chromosome 9.
 - `data/sap_flowering.pheno`: Tab-separated values file containing phenotype data ("days to flowering") for the Sorghum Association Panel (SAP) population (Chromosome 1).
 - `data/snp_matrix_1000.csv.gz`: Compressed CSV file containing a genotype matrix of 1,000 randomly selected SNPs from Chromosome 1. The accessions in this matrix correspond to those in `sap_flowering.pheno`.
+- `data/sap_flowering_1000.vcf`: VCF genotype file containing the 1,000 selected Chromosome 1 SNPs.
 - `data/260706_df_full_comparison.csv`: CSV file containing Plant Caduceus model inference scores (including embedding distance, expression score, and log-likelihood probability score along with ensemble ranks) for the 1,000 selected Chromosome 1 SNPs in `sap_flowering_1000.vcf`.
 - `data/sap_flowering_alleles.tsv`: TSV file mapping each of the 1,000 Chromosome 1 SNPs to its exact reference genome allele and alternative allele.
 
@@ -95,3 +104,14 @@ python prepare_data.py
 - [colab_bootstrap.sh](sorghum-vep-minimal/colab_bootstrap.sh): Automates isolated conda setup in Colab.
 - [prepare_data.py](sorghum-vep-minimal/prepare_data.py): Handles downloading, renaming, and indexing chromosome 9 files.
 - [vep_wrapper.py](sorghum-vep-minimal/vep_wrapper.py): Provides Python APIs to generate VCFs, invoke VEP, and load predictions.
+
+
+---
+
+## Troubleshooting
+
+If you encounter issues while running the workshop in Google Colab:
+
+- **Strict Cell Execution Order**: Cells must be run in the exact order they appear. This is critical due to fragile installation and dependency alignment requirements, specifically involving `mamba_ssm` and `causal_conv1d`.
+- **Session Reset**: If you run into import/library conflicts or unexpected errors, choose **Runtime > Disconnect and delete runtime** (or **Restart session**) from the Colab menu, then rerun the cells from the top.
+- **Fresh Copy**: If problems persist after resetting, please discard your current session and open a fresh copy of the notebook (`WinterSchool_2026_colab_notebook.ipynb`).
